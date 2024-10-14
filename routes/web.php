@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rute lainnya
 Route::get('/', function () {
-    return view('home', ['title' => 'Home']);
+    return view('login', ['title' => 'Login']);
+})->name('login');
+
+
+// Rute untuk halaman beranda
+Route::get('/home', function () {
+    return view('home'); // Pastikan view home.blade.php ada di folder resources/views
 })->name('home');
+
+
+
 
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');

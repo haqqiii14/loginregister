@@ -47,9 +47,10 @@ class UserController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
+
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->route('home'); // Arahkan ke route home setelah login
         }
 
         return back()->withErrors([
